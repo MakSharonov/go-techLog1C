@@ -92,6 +92,15 @@ func (c *conf) getConfig() *conf {
 		log.Fatalf("Unmarshal: %v", err)
 	}
 
+	yamlFileLoc, err := ioutil.ReadFile("./conf/local_settings.yaml")
+	if err != nil {
+		log.Printf("yamlFileLoc.Get err   #%v ", err)
+	}
+	err = yaml.Unmarshal(yamlFileLoc, c)
+	if err != nil {
+		log.Fatalf("Unmarshal local: %v", err)
+	}
+
 	return c
 }
 
